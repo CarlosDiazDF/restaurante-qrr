@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Panel de Cocina - El Buen Corte</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/cocina.css') }}">
+</head>
+<body>
+  <header>
+    <h1>🍽️ Panel de Cocina</h1>
+    <p>Gestión de pedidos en tiempo real</p>
+  </header>
+
+  <main>
+    <section class="panel pedidos-pendientes">
+      <h2>📋 Pendientes</h2>
+      <div id="lista-pedidos" class="pedido-lista">
+        {% for pedido in pendientes %}
+        <div class="pedido fade-in" data-id="{{ pedido.id }}">
+          <div class="pedido-header">
+            <h3>{{ pedido.nombre }}</h3>
+            <span class="tag-pendiente">Pendiente</span>
+          </div>
+          <p>{{ pedido.detalles }}</p>
+          <textarea class="observacion" placeholder="Observación (opcional)"></textarea>
+          <div class="acciones">
+            <button class="btn btn-entregado">Entregado</button>
+            <button class="btn btn-rechazado">Rechazado</button>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </section>
+
+    <section class="panel historial">
+      <h2>📦 Historial</h2>
+      <div id="lista-procesados" class="pedido-lista">
+        {% for pedido in historial %}
+        <div class="pedido historial fade-in" data-id="{{ pedido.id }}">
+          <div class="pedido-header">
+            <h3>{{ pedido.nombre }}</h3>
+            {% if pedido.estado == 1 %}
+              <span class="tag-entregado">Entregado</span>
+            {% else %}
+              <span class="tag-rechazado">Rechazado</span>
+            {% endif %}
+          </div>
+          <p>{{ pedido.detalles }}</p>
+        </div>
+        {% endfor %}
+      </div>
+    </section>
+  </main>
+
+  <div id="toast" class="toast"></div>
+
+  <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+  <script src="{{ url_for('static', filename='js/cocina.js') }}"></script>
+</body>
+</html>

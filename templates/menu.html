@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Restaurante El Buen Corte</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/menu.css') }}">
+</head>
+<body>
+    <header>🔥 Restaurante El Buen Corte 🔪</header>
+
+    <!-- === CORTES DE CARNE === -->
+    <section class="menu-section">
+        <h2>🥩 Cortes de Carne</h2>
+        <div class="menu-container">
+
+            <div class="item">
+                <img src="{{ url_for('static', filename='img/ribeye.jpg') }}" alt="Ribeye">
+                <h3>Ribeye</h3>
+                <p>Corte jugoso y tierno con marmoleo perfecto.</p>
+                <select>
+                    <option>Seleccionar término</option>
+                    <option>Azul / Sellada</option>
+                    <option>Rojo Inglés</option>
+                    <option>Término Medio</option>
+                    <option>Tres Cuartos</option>
+                    <option>Bien Cocida</option>
+                </select>
+                <button>Agregar</button>
+            </div>
+
+            <div class="item">
+                <img src="{{ url_for('static', filename='img/t-bone.jpg') }}" alt="T-Bone">
+                <h3>T-Bone</h3>
+                <p>Corte premium con hueso en T y sabor intenso.</p>
+                <select>
+                    <option>Seleccionar término</option>
+                    <option>Azul / Sellada</option>
+                    <option>Rojo Inglés</option>
+                    <option>Término Medio</option>
+                    <option>Tres Cuartos</option>
+                    <option>Bien Cocida</option>
+                </select>
+                <button>Agregar</button>
+            </div>
+
+            <div class="item">
+                <img src="{{ url_for('static', filename='img/picanha.jpg') }}" alt="Picanha">
+                <h3>Picanha</h3>
+                <p>Corte brasileño con capa de grasa dorada y sabor único.</p>
+                <select>
+                    <option>Seleccionar término</option>
+                    <option>Azul / Sellada</option>
+                    <option>Rojo Inglés</option>
+                    <option>Término Medio</option>
+                    <option>Tres Cuartos</option>
+                    <option>Bien Cocida</option>
+                </select>
+                <button>Agregar</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- === HAMBURGUESAS === -->
+    <section class="menu-section">
+        <h2>🍔 Hamburguesas</h2>
+        <div class="menu-container">
+            <div class="item">
+                <img src="{{ url_for('static', filename='img/hamburguesa_clasica.jpg') }}" alt="Hamburguesa Clásica">
+                <h3>Hamburguesa Clásica</h3>
+                <p>Carne 100% res, queso cheddar y pan artesanal.</p>
+                <select>
+                    <option>Seleccionar término</option>
+                    <option>Azul / Sellada</option>
+                    <option>Rojo Inglés</option>
+                    <option>Término Medio</option>
+                    <option>Tres Cuartos</option>
+                    <option>Bien Cocida</option>
+                </select>
+                <input type="text" placeholder="Detalles (ej: sin cebolla)">
+                <button>Agregar</button>
+            </div>
+
+            <div class="item">
+                <img src="{{ url_for('static', filename='img/hamburguesa_bacon.jpg') }}" alt="Hamburguesa con Bacon">
+                <h3>Hamburguesa con Bacon</h3>
+                <p>Carne jugosa, tocino crujiente y salsa especial de la casa.</p>
+                <select>
+                    <option>Seleccionar término</option>
+                    <option>Azul / Sellada</option>
+                    <option>Rojo Inglés</option>
+                    <option>Término Medio</option>
+                    <option>Tres Cuartos</option>
+                    <option>Bien Cocida</option>
+                </select>
+                <input type="text" placeholder="Detalles (ej: sin tomate)">
+                <button>Agregar</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- === BEBIDAS === -->
+    <section class="menu-section">
+        <h2>🍹 Bebidas</h2>
+        <div class="menu-container">
+            <div class="item">
+                <img src="{{ url_for('static', filename='img/jugo_limon.jpg') }}" alt="Jugo de Limón Natural">
+                <h3>Jugo de Limón Natural</h3>
+                <p>Refrescante y natural, hecho al momento.</p>
+                <button>Agregar</button>
+            </div>
+
+            <div class="item">
+                <img src="{{ url_for('static', filename='img/gaseosa.jpg') }}" alt="Gaseosa">
+                <h3>Gaseosa</h3>
+                <p>Variedad de sabores: cola, naranja, manzana.</p>
+                <button>Agregar</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="pedido">
+        <h2>🧾 Enviar Pedido</h2>
+        <form id="pedidoForm">
+            <label>Tu nombre</label>
+            <input type="text" name="nombre" required>
+            <label>Detalles del pedido</label>
+            <textarea name="detalles" required></textarea>
+            <button type="submit">Enviar pedido</button>
+        </form>
+    </section>
+
+<script src="{{ url_for('static', filename='js/menu.js') }}"></script>
+<script>
+document.addEventListener('scroll', () => {
+  const sections = document.querySelectorAll('.menu-section');
+  const triggerBottom = window.innerHeight * 0.85;
+  sections.forEach(section => {
+    const rect = section.getBoundingClientRect();
+    if (rect.top < triggerBottom) {
+      section.classList.add('visible');
+    }
+  });
+});
+</script>
+</body>
+</html>
